@@ -21,4 +21,4 @@ The test was written on postman and integrated to Gitub
 #All Test Pass 
 ![postman 4](https://user-images.githubusercontent.com/26329848/234123453-88383b07-0fc3-4938-a95d-18dc94b76d49.PNG)
 
-The test could be configured also to automaticaly run at specific time and a realtime result will be sent to a registared email address. 
+The test could also be configured  to automaticaly run at specific time and a realtime result will be sent to a registared email. 
