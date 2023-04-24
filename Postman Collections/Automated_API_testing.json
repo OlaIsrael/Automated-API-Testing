@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "5b5b21f3-3270-422f-95eb-f9f57eb8410e",
+		"name": "Reqres",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List users page 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e48c6660-e336-4045-92b1-0752500efd14",
+						"exec": [
+							"pm.test(\"Status code is 200 \", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 10000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"page number returned is 1 \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.page).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "86b0f320-5973-4ff5-9d03-12167fba4f4e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_for_reqres}}api/users?page=1",
+					"host": [
+						"{{base_url_for_reqres}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List users page 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e48c6660-e336-4045-92b1-0752500efd14",
+						"exec": [
+							"pm.test(\"Status code is 200 \", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 10000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"page number returned is 2 \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.page).to.eql(2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "8a7ec57f-3ac4-492a-a3ae-94588210d5f4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url_for_reqres}}api/users?page=2",
+					"host": [
+						"{{base_url_for_reqres}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c65efc5-01ef-483c-8c93-785baddd14e4",
+						"exec": [
+							"pm.test(\"Single user data is returned sucessfuly\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"check the ID if it's 2\", function () {\r",
+							"    pm.expect(jsonData.data.id).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"check if first_name equal jane\", function () {\r",
+							"    pm.expect(jsonData.data.first_name).to.eql(\"Janet\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1s\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "762ab0bb-7468-4bd5-ad00-6a3ef4167706",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url_for_reqres}}api/users/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Single User not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4889fe6d-2a25-4692-b7de-6d0303fd3c58",
+						"exec": [
+							"pm.test(\"User not found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "9fa8c1a6-a605-4b60-9182-276a320a1197",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url_for_reqres}}api/users/23"
+			},
+			"response": []
+		},
+		{
+			"name": "List resourses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f69db3fe-bb1d-4b88-b159-685dd969bc50",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var names = [\"cerulean\", \"fuchsia rose\", \"true red\", \"aqua sky\", \"tigerlily\", \"blue turquoise\", ];\r",
+							"\r",
+							"for (var i = 0; i < names.length; i++) {\r",
+							"    pm.test(\"Check for name \" + names[i], function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData.data[i].name).to.eql(names[i]);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"pm.test(\"cerulean's year\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].year).to.eql(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "51670c46-57a9-4567-9791-77bf4a29eb9a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{base_url_for_reqres}}api/unknown"
+			},
+			"response": []
+		},
+		{
+			"name": "Creat a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "21fe9fbe-ce7e-4ffe-ab24-1a7215d21cf7",
+						"exec": [
+							"\r",
+							"pm.test(\"User created Successfuly \", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+							"});\r",
+							"pm.test(\"Name created is Olamide\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Olamide\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "fafc1a60-7520-4f78-9927-4dc09a327d77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Olamide",
+							"type": "text"
+						},
+						{
+							"key": "job",
+							"value": "leader",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": "{{base_url_for_reqres}}api/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08e11225-cf9d-4db0-838b-0164da946d66",
+						"exec": [
+							"\r",
+							"pm.test(\"User created Successfuly \", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201, 202]);\r",
+							"});\r",
+							"pm.test(\"Name created is Olamide\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.job).to.eql(\"CEO\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "328c544d-1afe-4567-9969-bca827ea271d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Israel_or_God",
+							"type": "text"
+						},
+						{
+							"key": "job",
+							"value": "CEO",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": "{{base_url_for_reqres}}api/users/2"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "ec7b3a14-2ad2-43c0-9fe4-2ba239865cb7",
+			"key": "base_url_for_reqres",
+			"value": "https://reqres.in/",
+			"type": "string"
+		}
+	]
+}
